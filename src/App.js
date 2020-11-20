@@ -1,9 +1,17 @@
 import './App.css';
+import {BrowserRouter as Router , Route,} from 'react-router-dom';
+import HomePage from './pages/HomePage.js';
+import LoginPage from './pages/LoginPage.js';
+import SignupPage from './pages/SignUp.js';
 
 function App() {
   return (
     <div className="App">
-      <h1>Cmessenger</h1>
+      <Router>
+        <Route path='/' exact component={HomePage}/>
+        <Route path='/login' component={LoginPage} />
+        <Route path='/signup' component={SignupPage}/>
+      </Router>
     </div>
   );
 }
