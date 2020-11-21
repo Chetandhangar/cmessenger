@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import Layout from '../../components/Layout'
 import Card from '../../components/UI/Card'
 
+import {useDispatch} from 'react-redux';
+import { signup } from '../../redux/actions';
+
 /**
 * @author
 * @function SignupPage
@@ -12,13 +15,22 @@ const SignupPage = (props) => {
   const [firstname, setFirstName] = useState('')
   const [lastname, setLastName] = useState('')
   const [email, setEmail] = useState('')
-  const [passwod, setPassword] = useState('')
- 
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch();
+
+  const signupUser = (e) =>{
+    e.preventDefault();
+
+    const user={
+      firstname ,lastname, email, password
+    }
+      dispatch(signup(user))
+  }
   return(
         <Layout>
           <div className="signupContainer">
             <Card>
-          <form>
+          <form onSubmit={signupUser}>
           <input type="text"
           id="firstname"
           name="firstname"
@@ -42,8 +54,8 @@ const SignupPage = (props) => {
           </input>
           <input type="password"
           id="password"
-          name="passwod"
-          value={passwod}
+          name="password"
+          value={password}
           onChange={(e)=> setPassword(e.target.value)}
           placeholder="Password">  
           </input>

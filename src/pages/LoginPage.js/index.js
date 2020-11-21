@@ -12,7 +12,7 @@ import './style.css';
 const LoginPage = (props) => {
 
   const [email, setEmail] = useState('');
-  const [passwod, setPassword] = useState(''); 
+  const [password, setPassword] = useState(''); 
 
   return(
     <Layout>
@@ -29,7 +29,7 @@ const LoginPage = (props) => {
           <input type="password"
           id="password"
           name="passwod"
-          value={passwod}
+          value={password}
           onChange={(e)=> setPassword(e.target.value)}
           placeholder="Password">  
           </input>
