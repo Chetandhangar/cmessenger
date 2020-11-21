@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Layout from '../../components/Layout';
+import Card from '../../components/UI/Card';
+import './style.css';
+
 
 /**
 * @author
@@ -6,9 +10,39 @@ import React from 'react'
 **/
 
 const LoginPage = (props) => {
+
+  const [email, setEmail] = useState('');
+  const [passwod, setPassword] = useState(''); 
+
   return(
-    <div>LoginPage</div>
-   )
+    <Layout>
+      <div className="loginContainer">
+      <Card>
+        <form>
+          <input type="email"
+          id="email"
+          name="email"
+          value={email}
+          onChange={(e)=> setEmail(e.target.value)}
+          placeholder="Email">
+          </input>
+          <input type="password"
+          id="password"
+          name="passwod"
+          value={passwod}
+          onChange={(e)=> setPassword(e.target.value)}
+          placeholder="Password">  
+          </input>
+          <button>Login</button>
+        </form>
+      </Card>
+      </div>
+     
+    </Layout>
+    
+
+
+  ) 
 
  }
 
