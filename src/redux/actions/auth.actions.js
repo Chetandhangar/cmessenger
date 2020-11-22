@@ -57,3 +57,45 @@ export const signup = (user) =>{
         })
     }
 }
+
+
+export const signin = (user) =>{
+
+    return async (dispatch) =>{
+
+        dispatch({type: `${authConstant.USER_LOGIN}_REQUEST`});
+
+        firebase.auth()
+        .signInWithEmailAndPassword(user.email, user.password)
+        .then((data) =>{
+            console.log(data);
+
+            const name = data.user.displayName.split(' ');
+            const firstname = name[0];
+            const lastname = name[1];
+
+            const loggedInUser = {
+                firstname,
+                lastname,
+                uid: data.user.uid,
+                email: data.user.email
+            }
+
+            localStorage.setItem('user', JSON.stringify(loggedInUser));
+            dispatch({
+                type: `${authConstant.USER_LOGIN}_SUCCESS`,
+                payload : {user: loggedInUser}
+            })
+        })
+
+        .catch(error=>{
+            console.log(error);
+            dispatch({
+                type: `${authConstant.USER_LOGIN}_FAILURE`,
+                payload: {error}
+            })
+        })
+
+        
+    }
+}
