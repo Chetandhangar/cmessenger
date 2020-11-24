@@ -34,7 +34,7 @@ export default (state = initialState, action) =>{
             ...state,
             authenticating:false,
             authenticated:false,
-            error: action.payload.error
+            //error: action.payload.error
         }
         break;
 
