@@ -24,7 +24,8 @@ export const signup = (user) =>{
                         firstname: user.firstname,
                         lastname: user.lastname,
                         uid: data.user.uid,
-                        createdAt: new Date()
+                        createdAt: new Date(),
+                        isOnline : true
                     })
                     .then(()=>{
 

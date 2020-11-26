@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import Layout from '../../components/Layout'
 import Card from '../../components/UI/Card'
 
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { signup } from '../../redux/actions';
-
+import { Redirect} from 'react-router-dom'
 /**
 * @author
 * @function SignupPage
@@ -17,6 +17,7 @@ const SignupPage = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth)
 
   const signupUser = (e) =>{
     e.preventDefault();
@@ -26,6 +27,12 @@ const SignupPage = (props) => {
     }
       dispatch(signup(user))
   }
+
+  if(auth.authenticated){
+    return <Redirect to='/' />
+  }
+  
+
   return(
         <Layout>
           <div className="signupContainer">
