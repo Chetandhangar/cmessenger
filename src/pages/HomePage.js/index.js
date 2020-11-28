@@ -28,7 +28,7 @@ useEffect(() =>{
                              alt="Profile" />
                         </div>
                         <div style={{display: "flex", flex:1, justifyContent: "space-between", margin: '0 10px'}}>
-                    <span style={{fontWeight: 500}}>{user.firsname} {user.lastname}</span>
+                    <span style={{fontWeight: 500}}>{user.firstname} {user.lastname}</span>
                     <span>{user.isonline ? "online": "offline"}</span>
                         </div>
                     </div>
