@@ -16,7 +16,7 @@ const User = (props) =>{
     </div>
     <div style={{display: "flex", flex:1, justifyContent: "space-between", margin: '0 10px'}}>
         <span style={{fontWeight: 500}}>{user.firstname} {user.lastname}</span>
-        <span>{user.isOnline ? `onlineStatus`: `onlineStatus off`}</span>
+        <span className = {user.isOnline ? `onlineStatus`: `onlineStatus off`}></span>
     </div>
 </div>
     );
