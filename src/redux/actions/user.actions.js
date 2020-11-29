@@ -14,7 +14,7 @@ export const Realtimeuser = (uid) =>{
     .onSnapshot((querySnapshot) =>{
         const user = [];
         querySnapshot.forEach(function(doc){
-            if(doc.data.uid != uid){
+            if(doc.data().uid != uid){
                 user.push(doc.data())
             }
         });
