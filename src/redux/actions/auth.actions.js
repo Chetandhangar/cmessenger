@@ -20,7 +20,9 @@ export const signup = (user) =>{
             })
             .then(()=>{
                     //if you are updated successfully
-                    db.collection('user').add({
+                    db.collection('user')
+                    .doc(data.user.uid)
+                    .set({
                         firstname: user.firstname,
                         lastname: user.lastname,
                         uid: data.user.uid,
@@ -71,16 +73,23 @@ export const signin = (user) =>{
         .then((data) =>{
             console.log(data);
 
-            const name = data.user.displayName.split(' ');
-            const firstname = name[0];
-            const lastname = name[1];
-
-            const loggedInUser = {
-                firstname,
-                lastname,
-                uid: data.user.uid,
-                email: data.user.email
-            }
+            const db = firebase.firestore();
+            db.collection('user')
+            .doc(data.user.uid)
+            .update({
+                isOnline : true
+            })
+            .then(()=>{
+                const name = data.user.displayName.split(' ');
+                const firstname = name[0];
+                const lastname = name[1];
+    
+                const loggedInUser = {
+                    firstname,
+                    lastname,
+                    uid: data.user.uid,
+                    email: data.user.email
+                }
 
             localStorage.setItem('user', JSON.stringify(loggedInUser));
             dispatch({
@@ -91,11 +100,17 @@ export const signin = (user) =>{
 
         .catch(error=>{
             console.log(error);
-            dispatch({
-                type: `${authConstant.USER_LOGIN}_FAILURE`,
-                payload: {error}
-            })
+         
         })
+    
+    })
+        .catch(error => {
+        console.log(error);
+        dispatch({
+            type: `${authConstant.USER_LOGIN}_FAILURE`,
+            payload: { error }
+        })
+    })
 
         
     }
